@@ -42,7 +42,7 @@ make vendor
 
 ## Testing
 
-Just run `make testall`.
+Just run `make test`.
 
 For each cloud you'll need the environment variables.
 See the docs for each cloud to help you with each one.
@@ -54,7 +54,7 @@ Inside each test package the logs will be saved at **./testdata/logs**.
 
 To run redirecting logs to stdout:
 
-Just run `make testall logger=stdout`.
+Just run `make test logger=stdout`.
 
 
 ### Azure
