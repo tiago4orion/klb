@@ -30,11 +30,7 @@ func New(
 	t *testing.T,
 	l *log.Logger,
 ) *Retrier {
-	return &Retrier{
-		ctx: ctx,
-		t:   t,
-		l:   l,
-	}
+	return &Retrier{ctx: ctx, t: t, l: l}
 }
 
 // Run executes the given work function trying again if something

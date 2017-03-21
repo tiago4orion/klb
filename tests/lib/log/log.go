@@ -18,20 +18,20 @@ var logbuilders map[string]loggerBuilder
 
 var logger string
 
-//New creates a log.Logger for the given testame.
-//This will save the logs on our common logs dir
-//or stdout, according to what is configured by the argument
-//-logger passed to go test using -args.
+// New creates a log.Logger for the given testame.
+// This will save the logs on our common logs dir
+// or stdout, according to what is configured by the argument
+// -logger passed to go test using -args.
 //
-//Example stdout: go test ./... -args -logger stdout
-//Example file: go test ./... -args -logger file
+// Example stdout: go test ./... -args -logger stdout
+// Example file: go test ./... -args -logger file
 //
-//This is not very usual on Go tests but we have pretty
-//long running tests that may take some time to run and
-//being able to tail some logs saved on disk is useful
-//on development.
+// This is not very usual on Go tests but we have pretty
+// long running tests that may take some time to run and
+// being able to tail some logs saved on disk is useful
+// on development.
 //
-//You should not use the logger instance after you call TearDownFunc.
+// You should not use the logger instance after you call TearDownFunc.
 func New(t *testing.T, testname string) (*log.Logger, TearDownFunc) {
 	builder, ok := logbuilders[logger]
 	if !ok {
