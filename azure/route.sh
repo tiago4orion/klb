@@ -89,7 +89,7 @@ fn azure_route_table_route_update(instance) {
 # azure_route_table_add_route Create route in a Route Table
 # deprecated: Use the azure_route_table_route_new function
 fn azure_route_table_add_route(name, group, routetable, address, hoptype, hopaddress) {
-	(
+	out, status <= (
 		azure network route-table route create
 						--name $name
 						--resource-group $group
@@ -98,6 +98,21 @@ fn azure_route_table_add_route(name, group, routetable, address, hoptype, hopadd
 						--next-hop-type $hoptype
 						--next-hop-ip-address $hopaddress
 	)
+
+	if $status != "0" {
+		return format(
+			"error[%s] adding route[%s] on resgroup[%s] route table[%s] address[%s] hoptype[%s] hopip[%s]",
+			$out,
+			$name,
+			$group,
+			$routetable,
+			$address,
+			$hoptype,
+			$hopaddress
+		)
+	}
+
+	return ""
 }
 
 fn azure_route_table_delete_route(name, group, routetable) {
